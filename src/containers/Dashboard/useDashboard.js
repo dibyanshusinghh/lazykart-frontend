@@ -17,13 +17,17 @@ export default () => {
 			stocksDash: { stocksLoading, stocksData, stocksError },
 			salesDash: { salesLoading, salesData, salesError },
 		},
+		authState: {
+			loginAuth: { data },
+		},
 	} = useContext(GlobalContext);
 	//console.log("Stocks : ", context);
 
 	useEffect(() => {
+		console.log(data, "Local Storage", localStorage);
 		getStockData()(stocksDispatch);
 		getSalesData()(stocksDispatch);
-	}, []);
+	}, [data]);
 
 	return {
 		stocksLoading,

@@ -45,13 +45,13 @@ const StocksUI = () => {
 	return (
 		<div
 			style={{
-				background: "#132044 ",
+				//background: "#132044 ",
 				margin: 0,
 				height: "100%",
 			}}
 		>
 			<AddStockUI form={form} />
-			<Image src={add_stock} width="100%" height="200px" />
+			<StyledImage src={add_stock} width="100%" height="200px" />
 			<StyledDiv>
 				<Button primary icon onClick={handleOpenModal}>
 					<Icon name="add"></Icon>
@@ -74,7 +74,7 @@ const StocksUI = () => {
 				}
 			</StyledDiv>
 			<StyledTableDiv>
-				<StyledTable celled inverted selectable>
+				<StyledTable celled inverted selectable unstackable>
 					<Table.Header>
 						<Table.Row>
 							<Table.HeaderCell>Item Id</Table.HeaderCell>
@@ -107,7 +107,7 @@ const StocksUI = () => {
 							</Table.Row>
 						))}
 					</Table.Body>
-					<Table.Footer fullWidth>
+					<Table.Footer>
 						<Table.Row>
 							<Table.HeaderCell />
 							<Table.HeaderCell colSpan="4">
@@ -141,4 +141,8 @@ const StyledTableDiv = styled.div`
 
 const StyledTable = styled(Table)`
 	min-height: 550px !important;
+`;
+
+const StyledImage = styled(Image)`
+	background-color: #123456 !important;
 `;

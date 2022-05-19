@@ -2,11 +2,12 @@ import React, { useContext, useEffect, useState } from "react";
 import { login } from "../../context/actions/auth/login";
 import { GlobalContext } from "../../context/Provider";
 import { useNavigate } from "react-router-dom";
+import { LOGOUT_USER } from "../../constants/actionTypes";
 
 export default () => {
 	const [loginForm, setLoginForm] = useState({});
 	const [fieldErrors, setFieldErrors] = useState({});
-	const history = useNavigate();
+	const navigate = useNavigate();
 
 	const {
 		authDispatch,
@@ -26,10 +27,10 @@ export default () => {
 		}
 	}, [error]);
 
-	console.log("login data", data, "error", error);
+	//console.log("login data", data, "error", error);
 	useEffect(() => {
-		if (data) {
-			history("/");
+		if (data && localStorage.getItem("token")) {
+			navigate("/");
 		}
 	}, [data]);
 
@@ -47,7 +48,18 @@ export default () => {
 		login(loginForm)(authDispatch);
 	};
 
-	console.log(loginForm);
+	const handleLogout = () => {
+		//the below call will change the contacts state if any
+		localStorage.removeItem("token");
+		authDispatch({
+			type: LOGOUT_USER,
+		});
+		//logout()(contactsDispatch);
+		console.log(`User Data Deleted`);
+		navigate("/auth/login");
+	};
+
+	//console.log(loginForm);
 	return {
 		loginForm,
 		onChange,
@@ -56,5 +68,6 @@ export default () => {
 		loading,
 		fieldErrors,
 		error,
+		handleLogout,
 	};
 };

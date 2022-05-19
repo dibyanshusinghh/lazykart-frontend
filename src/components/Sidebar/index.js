@@ -47,9 +47,9 @@ const SideBar = ({ children }) => {
 							as={Menu}
 							animation="overlay"
 							icon="labeled"
-							inverted
 							onHide={() => setVisible(false)}
 							vertical
+							inverted
 							target={segmentRef}
 							visible={visible}
 							width="thin"

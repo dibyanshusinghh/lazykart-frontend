@@ -39,13 +39,13 @@ const OrdersUI = () => {
 	return (
 		<div
 			style={{
-				background: "#132044 ",
+				//background: "#132044 ",
 				margin: 0,
 				height: "100%",
 			}}
 		>
 			<AddOrdersUI form={form} />
-			<Image src={add_orders} width="100%" height="200px" />
+			<StyledImage src={add_orders} width="100%" height="200px" />
 			<StyledDiv>
 				<Button primary icon onClick={handleOpenModal}>
 					<Icon name="add"></Icon>
@@ -68,7 +68,7 @@ const OrdersUI = () => {
 				}
 			</StyledDiv>
 			<StyledTableDiv>
-				<StyledTable celled inverted selectable>
+				<StyledTable celled inverted selectable unstackable>
 					<Table.Header>
 						<Table.Row>
 							<Table.HeaderCell>Item Id</Table.HeaderCell>
@@ -82,7 +82,7 @@ const OrdersUI = () => {
 
 					<Table.Body>
 						{data?.data?.items.map((item) => (
-							<StyledTableRow
+							<Table.Row
 								key={item.itemId}
 								active={item.itemId === activeRowId}
 								onClick={() =>
@@ -102,13 +102,13 @@ const OrdersUI = () => {
 								<Table.Cell textAlign="center">{item.status}</Table.Cell>
 								<Table.Cell textAlign="center">{item.email}</Table.Cell>
 								<Table.Cell textAlign="center">{item.contact}</Table.Cell>
-							</StyledTableRow>
+							</Table.Row>
 						))}
 					</Table.Body>
 					<Table.Footer>
 						<Table.Row>
 							<Table.HeaderCell />
-							<Table.HeaderCell colSpan="3">
+							<Table.HeaderCell colSpan="4">
 								<PaginationComp form={ordersHook} />
 							</Table.HeaderCell>
 						</Table.Row>
@@ -141,6 +141,6 @@ const StyledTable = styled(Table)`
 	min-height: 550px !important;
 `;
 
-const StyledTableRow = styled(Table.Row)`
-	max-height: 40px !important;
+const StyledImage = styled(Image)`
+	background-color: #123456 !important;
 `;

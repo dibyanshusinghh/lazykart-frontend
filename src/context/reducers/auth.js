@@ -5,6 +5,7 @@ import {
 	LOGIN_LOADING,
 	LOGIN_SUCCESS,
 	LOGIN_ERROR,
+	LOGOUT_USER,
 } from "../../constants/actionTypes";
 
 const auth = (state, { payload, type }) => {
@@ -49,7 +50,7 @@ const auth = (state, { payload, type }) => {
 				},
 			};
 
-		case REGISTER_ERROR || LOGIN_ERROR:
+		case REGISTER_ERROR:
 			return {
 				...state,
 				auth: {
@@ -66,6 +67,16 @@ const auth = (state, { payload, type }) => {
 					...state.loginAuth,
 					loading: false,
 					error: payload,
+				},
+			};
+		case LOGOUT_USER:
+			return {
+				...state,
+				loginAuth: {
+					...state.loginAuth,
+					loading: false,
+					error: false,
+					data: {},
 				},
 			};
 		default:

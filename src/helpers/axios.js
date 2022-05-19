@@ -3,17 +3,14 @@ import axios from "axios";
 const baseURL = process.env.REACT_APP_BACKEND_URL;
 let headers = {};
 
-console.log("BaseURL", baseURL);
-
-if (localStorage.token) {
-	headers.authorization = `Bearer ${localStorage.token}`;
-}
-
-console.log("headers.authorization", headers.authorization);
+//console.log("BaseURL", baseURL);
 
 const axiosInstance = axios.create({
 	baseURL: baseURL,
-	headers,
+	headers: {
+		...headers,
+		authorization: `Bearer ${localStorage.getItem("token")}` || "",
+	},
 });
 /*
 axiosInstance.interceptors.response.use(

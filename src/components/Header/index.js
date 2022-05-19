@@ -5,18 +5,14 @@ import logo from "../../assets/images/cart_logo.png";
 import { GlobalContext } from "../../context/Provider";
 import { logout } from "../../context/actions/auth/logout";
 import styled from "styled-components";
+import useLoginForm from "../../containers/Login/useLoginForm";
 
 const Header = () => {
 	const { pathname } = useLocation();
 	const navigate = useNavigate();
 	//console.log("pathname", pathname);
-	const { contactsDispatch } = useContext(GlobalContext);
 
-	const handleLogout = () => {
-		//the below call will change the contacts state if any
-		logout()(contactsDispatch);
-		navigate("/auth/login");
-	};
+	const { handleLogout } = useLoginForm();
 
 	return (
 		<StyledMenu secondary pointing padding={0} margin={0}>
